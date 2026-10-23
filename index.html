@@ -1,13 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0b16">
-  <title>NEON ARENA | Gaming Zone</title>
+  <meta name="theme-color" content="#080812">
+
+  <title>NEON ARENA | Play Beyond Limits</title>
+
+  <meta name="description"
+        content="Welcome to NEON ARENA, your futuristic gaming zone. Play browser games and beat your high scores.">
 
   <style>
+    :root {
+      --bg: #080812;
+      --panel: #121225;
+      --cyan: #5fffee;
+      --purple: #9b6bff;
+      --text: #f5f5ff;
+      --muted: #b5b5ce;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,137 +28,171 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 85px;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #0b0b16;
-      color: #f5f5ff;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
     }
 
-    header {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 4px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 12px;
-      padding: 18px 6%;
-      background: #121222;
-      border-bottom: 1px solid #292943;
+      padding: 15px 7%;
+      background: rgba(8, 8, 18, 0.96);
+      border-bottom: 1px solid #29294a;
     }
 
     .logo {
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 900;
-      color: #b99aff;
+      color: var(--cyan);
       letter-spacing: 1px;
+      white-space: nowrap;
+      text-shadow: 0 0 14px #5fffee55;
     }
 
-    nav {
+    .nav-links {
       display: flex;
-      gap: 16px;
       flex-wrap: wrap;
+      gap: 16px;
     }
 
-    nav a {
-      color: #deddf2;
-      text-decoration: none;
+    .nav-links a {
       font-size: 14px;
+      color: var(--muted);
+      transition: color 0.2s;
     }
 
-    nav a:hover {
-      color: #55f6ed;
+    .nav-links a:hover {
+      color: var(--cyan);
     }
 
     .hero {
-      padding: 85px 20px;
+      min-height: 440px;
+      padding: 90px 7% 75px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       background:
-        radial-gradient(ellipse at top, #42216d 0%, transparent 65%),
-        linear-gradient(135deg, #15152d, #0b0b16);
+        radial-gradient(ellipse at 50% 20%, #5926a944, transparent 55%),
+        radial-gradient(ellipse at 15% 90%, #00d9ff16, transparent 45%);
     }
 
-    .tag {
+    .badge {
       display: inline-block;
       padding: 6px 13px;
-      border: 1px solid #a78bfa;
+      border: 1px solid #5fffee66;
       border-radius: 30px;
-      color: #c8b5ff;
+      color: var(--cyan);
       font-size: 12px;
       letter-spacing: 2px;
       margin-bottom: 20px;
     }
 
     .hero h1 {
-      font-size: clamp(38px, 9vw, 68px);
-      line-height: 1.1;
-      margin-bottom: 20px;
+      font-size: clamp(38px, 8vw, 76px);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 22px;
     }
 
-    .neon {
-      color: #61f7eb;
-      text-shadow: 0 0 20px #61f7eb55;
+    .hero h1 span {
+      color: var(--cyan);
+      text-shadow: 0 0 25px #5fffee55;
     }
 
     .hero p {
-      max-width: 540px;
-      margin: 0 auto 28px;
-      color: #c5c4db;
+      max-width: 580px;
+      color: var(--muted);
+      margin-bottom: 28px;
     }
 
     .btn {
       display: inline-block;
-      background: #a78bfa;
-      color: #100d20;
       padding: 12px 23px;
+      border: 1px solid var(--cyan);
       border-radius: 8px;
-      text-decoration: none;
+      background: var(--cyan);
+      color: #071010;
       font-weight: bold;
-      border: none;
       cursor: pointer;
-      font-size: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .btn:hover {
-      background: #61f7eb;
+      transform: translateY(-2px);
+      box-shadow: 0 0 22px #5fffee55;
     }
 
-    section.content {
-      padding: 55px 6%;
+    .btn.secondary {
+      background: transparent;
+      color: var(--cyan);
+    }
+
+    .section {
+      padding: 65px 7%;
     }
 
     .section-title {
       text-align: center;
-      font-size: 30px;
-      margin-bottom: 8px;
+      font-size: clamp(25px, 5vw, 36px);
+      margin-bottom: 10px;
+    }
+
+    .section-title span {
+      color: var(--cyan);
     }
 
     .subtitle {
+      color: var(--muted);
       text-align: center;
-      color: #aaa9c6;
-      margin-bottom: 30px;
+      margin: 0 auto 35px;
+      max-width: 600px;
     }
 
-    .games {
+    .game-grid {
       display: grid;
-      grid-template-columns: repeat(
-        auto-fit, minmax(220px, 1fr)
-      );
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
     }
 
     .game-card {
-      background: #17172a;
-      border: 1px solid #30304c;
-      border-radius: 16px;
+      background: var(--panel);
+      border: 1px solid #29294a;
+      border-radius: 15px;
       overflow: hidden;
-      transition: transform 0.2s;
+      transition: transform 0.25s, border-color 0.25s;
     }
 
     .game-card:hover {
       transform: translateY(-5px);
-      border-color: #a78bfa;
+      border-color: var(--purple);
     }
 
     .game-art {
@@ -154,18 +200,9 @@
       display: grid;
       place-items: center;
       font-size: 65px;
-    }
-
-    .art-one {
-      background: linear-gradient(135deg, #29205a, #632c81);
-    }
-
-    .art-two {
-      background: linear-gradient(135deg, #064b54, #182a65);
-    }
-
-    .art-three {
-      background: linear-gradient(135deg, #71313b, #38214f);
+      background:
+        radial-gradient(circle at center, #5633a555, transparent 65%),
+        #17172c;
     }
 
     .game-info {
@@ -174,164 +211,764 @@
 
     .game-info h3 {
       margin-bottom: 8px;
-      font-size: 21px;
     }
 
     .game-info p {
-      color: #b9b8d0;
+      color: var(--muted);
       font-size: 14px;
+      min-height: 45px;
       margin-bottom: 16px;
     }
 
     .small-btn {
+      padding: 9px 13px;
+      color: var(--cyan);
       background: transparent;
-      color: #61f7eb;
-      border: 1px solid #61f7eb;
-      padding: 9px 15px;
+      border: 1px solid #5fffee88;
       border-radius: 7px;
       cursor: pointer;
-      font-weight: bold;
     }
 
-    .about {
-      background: #121222;
-      border-top: 1px solid #292943;
-      border-bottom: 1px solid #292943;
+    .small-btn:hover {
+      background: #5fffee18;
+    }
+
+    .play-area {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px;
+      border-radius: 18px;
+      border: 1px solid #393960;
+      background: var(--panel);
+    }
+
+    .game-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .game-tabs button.active {
+      color: #080812;
+      background: var(--cyan);
+    }
+
+    .game-panel[hidden] {
+      display: none;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .stats strong {
+      display: block;
+      font-size: 25px;
+      color: var(--cyan);
+    }
+
+    .arena {
+      height: 270px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #38385c;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at center, #28204d, #090914);
+    }
+
+    .target {
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      border: 2px solid var(--cyan);
+      border-radius: 50%;
+      background: #5145cd;
+      color: white;
+      font-size: 25px;
+      box-shadow: 0 0 18px #5fffee88;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .game-controls {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .message {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 15px;
+      min-height: 26px;
+    }
+
+    .snake-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #snakeCanvas {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      background: #090914;
+      border: 1px solid #41416c;
+      border-radius: 10px;
+      touch-action: none;
+    }
+
+    .direction-pad {
+      display: grid;
+      grid-template-columns: repeat(3, 55px);
+      grid-template-rows: repeat(2, 48px);
+      gap: 7px;
+      margin-top: 15px;
+    }
+
+    .direction-pad button {
+      border: 1px solid #5fffee88;
+      border-radius: 8px;
+      color: var(--cyan);
+      background: #19192f;
+      font-size: 22px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .direction-pad .up {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .direction-pad .left {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .direction-pad .down {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .direction-pad .right {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .about-box {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 28px;
+      background: var(--panel);
+      border: 1px solid #29294a;
+      border-radius: 15px;
       text-align: center;
     }
 
-    .about p {
-      max-width: 600px;
-      margin: 15px auto 0;
-      color: #c5c4db;
+    .about-box p {
+      color: var(--muted);
     }
 
-    footer {
+    .footer {
+      padding: 25px 7%;
       text-align: center;
-      padding: 25px 15px;
-      color: #9695b2;
+      color: var(--muted);
+      border-top: 1px solid #29294a;
       font-size: 13px;
     }
 
-    @media (max-width: 480px) {
-      header {
+    .footer span {
+      color: var(--cyan);
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 13px 5%;
+        flex-direction: column;
+      }
+
+      .nav-links {
         justify-content: center;
+        gap: 15px;
       }
 
       .hero {
-        padding: 65px 18px;
+        min-height: 380px;
+        padding: 65px 5%;
       }
 
-      section.content {
-        padding: 42px 18px;
+      .section {
+        padding: 48px 5%;
       }
 
-      .section-title {
-        font-size: 26px;
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .game-art {
+        min-height: 120px;
+      }
+
+      .play-area {
+        padding: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="logo">⚡ NEON ARENA</div>
-    <nav>
+  <header class="navbar">
+    <a class="logo" href="#home">⚡ NEON ARENA</a>
+
+    <nav class="nav-links" aria-label="Main navigation">
       <a href="#home">Home</a>
       <a href="#games">Games</a>
+      <a href="#play">Play Now</a>
       <a href="#about">About</a>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="home">
-      <div class="tag">YOUR GAMING UNIVERSE</div>
-      <h1>ENTER THE<br><span class="neon">NEXT LEVEL</span></h1>
+      <div class="badge">YOUR NEXT LEVEL STARTS HERE</div>
+
+      <h1>ENTER THE<br><span>NEON ZONE</span></h1>
+
       <p>
-        Discover epic adventures, explore new worlds,
-        and celebrate your passion for gaming.
-        Your next quest starts here!
+        Discover browser games, challenge your reflexes,
+        beat your high scores, and enter the arena.
       </p>
-      <a class="btn" href="#games">EXPLORE GAMES ↓</a>
+
+      <a class="btn" href="#play">PLAY NOW ⚡</a>
     </section>
 
-    <section class="content" id="games">
-      <h2 class="section-title">🎮 Featured Games</h2>
-      <p class="subtitle">Choose your next adventure.</p>
+    <section class="section" id="games">
+      <h2 class="section-title">FEATURED <span>GAMES</span></h2>
 
-      <div class="games">
+      <p class="subtitle">
+        Choose your next adventure. Your gaming journey starts here.
+      </p>
+
+      <div class="game-grid">
         <article class="game-card">
-          <div class="game-art art-one">🐉</div>
+          <div class="game-art" aria-hidden="true">🐍</div>
           <div class="game-info">
-            <h3>Fantasy Quest</h3>
-            <p>
-              Enter a magical world of dragons,
-              mysterious lands, and legendary quests.
-            </p>
-            <button class="small-btn"
-              onclick="showInfo('Fantasy Quest')">
-              Explore
+            <h3>Neon Snake</h3>
+            <p>Eat the glowing food, grow longer, and beat your record.</p>
+            <button class="small-btn" data-open-game="snake">
+              PLAY SNAKE →
             </button>
           </div>
         </article>
 
         <article class="game-card">
-          <div class="game-art art-two">🚀</div>
+          <div class="game-art" aria-hidden="true">⚡</div>
+          <div class="game-info">
+            <h3>Neon Tap Challenge</h3>
+            <p>Test your reflexes by tapping the target before time runs out.</p>
+            <button class="small-btn" data-open-game="tap">
+              PLAY CHALLENGE →
+            </button>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <div class="game-art" aria-hidden="true">🚀</div>
           <div class="game-info">
             <h3>Galaxy Raiders</h3>
-            <p>
-              Travel across the galaxy and imagine
-              your own futuristic adventure.
-            </p>
-            <button class="small-btn"
-              onclick="showInfo('Galaxy Raiders')">
-              Explore
-            </button>
-          </div>
-        </article>
-
-        <article class="game-card">
-          <div class="game-art art-three">👾</div>
-          <div class="game-info">
-            <h3>Cyber Battle</h3>
-            <p>
-              Step into a neon universe inspired
-              by futuristic arcade battles.
-            </p>
-            <button class="small-btn"
-              onclick="showInfo('Cyber Battle')">
-              Explore
+            <p>Explore the galaxy and get ready for more adventures.</p>
+            <button class="small-btn" data-coming-soon>
+              COMING SOON
             </button>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="content about" id="about">
-      <h2 class="section-title">ABOUT THE ARENA</h2>
-      <p>
-        NEON ARENA is a fan-made gaming website
-        created by a gaming enthusiast. This is a
-        place to celebrate games, imagination,
-        creativity, and the gaming community.
+    <section class="section" id="play">
+      <h2 class="section-title">THE <span>ARENA</span></h2>
+
+      <p class="subtitle">
+        Play now. Set a record. Come back and beat it!
       </p>
+
+      <div class="play-area">
+        <div class="game-tabs">
+          <button class="small-btn active" data-tab="tap">
+            ⚡ Tap Challenge
+          </button>
+
+          <button class="small-btn" data-tab="snake">
+            🐍 Snake
+          </button>
+        </div>
+
+        <section class="game-panel" id="tapPanel">
+          <div class="stats">
+            <div>SCORE<strong id="tapScore">0</strong></div>
+            <div>TIME<strong><span id="tapTime">20</span>s</strong></div>
+            <div>BEST<strong id="tapBest">0</strong></div>
+          </div>
+
+          <div class="arena" id="tapArena">
+            <button class="target" id="tapTarget"
+                    aria-label="Tap the glowing target">⚡</button>
+          </div>
+
+          <div class="game-controls">
+            <button class="btn" id="tapStart">START GAME</button>
+            <button class="btn secondary" id="tapRestart">RESTART</button>
+          </div>
+
+          <p class="message" id="tapMessage" aria-live="polite">
+            Ready, gamer? Press START GAME!
+          </p>
+        </section>
+
+        <section class="game-panel" id="snakePanel" hidden>
+          <div class="stats">
+            <div>SCORE<strong id="snakeScore">0</strong></div>
+            <div>BEST<strong id="snakeBest">0</strong></div>
+          </div>
+
+          <div class="snake-wrap">
+            <canvas id="snakeCanvas" width="360" height="360"
+                    aria-label="Snake game board"></canvas>
+
+            <div class="game-controls">
+              <button class="btn" id="snakeStart">START SNAKE</button>
+            </div>
+
+            <div class="direction-pad" aria-label="Snake controls">
+              <button class="up" data-direction="up" aria-label="Up">↑</button>
+              <button class="left" data-direction="left" aria-label="Left">←</button>
+              <button class="down" data-direction="down" aria-label="Down">↓</button>
+              <button class="right" data-direction="right" aria-label="Right">→</button>
+            </div>
+          </div>
+
+          <p class="message" id="snakeMessage" aria-live="polite">
+            Press START SNAKE. Use the arrows to move.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section-title">ABOUT <span>NEON ARENA</span></h2>
+
+      <p class="subtitle">A gaming zone built for curious players.</p>
+
+      <div class="about-box">
+        <p>
+          NEON ARENA is a gaming website project featuring a futuristic
+          design and browser-based mini-games. We aim to make gaming
+          accessible, fun, and easy to enjoy on mobile devices.
+          More games and features can be added as the arena grows.
+        </p>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>⚡ NEON ARENA</p>
-    <p>Created with passion by a gamer.</p>
-    <p>© 2026 NEON ARENA</p>
+  <footer class="footer">
+    <p>⚡ <span>NEON ARENA</span> | Play Beyond Limits</p>
+    <p>Made for gamers. Powered by creativity.</p>
   </footer>
 
   <script>
-    function showInfo(game) {
-      alert(
-        "Welcome to " + game +
-        "! More gaming content coming soon."
+    // Safe local storage helpers
+    function loadBest(key) {
+      try {
+        return Number(localStorage.getItem(key)) || 0;
+      } catch (error) {
+        return 0;
+      }
+    }
+
+    function saveBest(key, value) {
+      try {
+        localStorage.setItem(key, String(value));
+      } catch (error) {
+        // The game still works if storage is unavailable.
+      }
+    }
+
+    // Navigation between game panels
+    const tapPanel = document.getElementById("tapPanel");
+    const snakePanel = document.getElementById("snakePanel");
+
+    function openGame(name) {
+      const showSnake = name === "snake";
+
+      tapPanel.hidden = showSnake;
+      snakePanel.hidden = !showSnake;
+
+      document.querySelectorAll("[data-tab]").forEach(function(button) {
+        button.classList.toggle(
+          "active",
+          button.dataset.tab === name
+        );
+      });
+
+      document.getElementById("play").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    document.querySelectorAll("[data-tab]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        openGame(button.dataset.tab);
+      });
+    });
+
+    document.querySelectorAll("[data-open-game]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        openGame(button.dataset.openGame);
+      });
+    });
+
+    document.querySelectorAll("[data-coming-soon]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        alert("Galaxy Raiders is coming soon! Stay tuned. 🚀");
+      });
+    });
+
+    // NEON TAP CHALLENGE
+    const tapArena = document.getElementById("tapArena");
+    const tapTarget = document.getElementById("tapTarget");
+    const tapScoreText = document.getElementById("tapScore");
+    const tapTimeText = document.getElementById("tapTime");
+    const tapBestText = document.getElementById("tapBest");
+    const tapMessage = document.getElementById("tapMessage");
+    const tapStart = document.getElementById("tapStart");
+
+    let tapScore = 0;
+    let tapTime = 20;
+    let tapPlaying = false;
+    let tapTimer = null;
+    let tapBest = loadBest("neonArenaTapBest");
+
+    tapBestText.textContent = tapBest;
+
+    function moveTarget() {
+      const maxX = Math.max(
+        0, tapArena.clientWidth - tapTarget.offsetWidth
+      );
+
+      const maxY = Math.max(
+        0, tapArena.clientHeight - tapTarget.offsetHeight
+      );
+
+      tapTarget.style.left =
+        Math.floor(Math.random() * (maxX + 1)) + "px";
+
+      tapTarget.style.top =
+        Math.floor(Math.random() * (maxY + 1)) + "px";
+    }
+
+    function finishTapGame() {
+      tapPlaying = false;
+      clearInterval(tapTimer);
+      tapTarget.style.display = "none";
+      tapStart.textContent = "PLAY AGAIN";
+
+      tapMessage.textContent =
+        "Time's up! Your score: " + tapScore + " ⚡";
+    }
+
+    function startTapGame() {
+      clearInterval(tapTimer);
+
+      tapScore = 0;
+      tapTime = 20;
+      tapPlaying = true;
+
+      tapScoreText.textContent = "0";
+      tapTimeText.textContent = "20";
+      tapMessage.textContent = "Go, go, go! Tap the target!";
+      tapStart.textContent = "GAME IN PROGRESS";
+
+      tapTarget.style.display = "flex";
+      moveTarget();
+
+      tapTimer = setInterval(function() {
+        tapTime--;
+        tapTimeText.textContent = tapTime;
+
+        if (tapTime <= 0) {
+          finishTapGame();
+        }
+      }, 1000);
+    }
+
+    tapTarget.addEventListener("click", function() {
+      if (!tapPlaying) return;
+
+      tapScore++;
+      tapScoreText.textContent = tapScore;
+
+      if (tapScore > tapBest) {
+        tapBest = tapScore;
+        tapBestText.textContent = tapBest;
+        saveBest("neonArenaTapBest", tapBest);
+      }
+
+      moveTarget();
+    });
+
+    tapStart.addEventListener("click", function() {
+      if (!tapPlaying) startTapGame();
+    });
+
+    document.getElementById("tapRestart").addEventListener(
+      "click", startTapGame
+    );
+
+    // NEON SNAKE
+    const canvas = document.getElementById("snakeCanvas");
+    const ctx = canvas.getContext("2d");
+    const snakeScoreText = document.getElementById("snakeScore");
+    const snakeBestText = document.getElementById("snakeBest");
+    const snakeMessage = document.getElementById("snakeMessage");
+    const snakeStart = document.getElementById("snakeStart");
+
+    const cell = 18;
+    const cells = canvas.width / cell;
+
+    let snake = [];
+    let food = { x: 10, y: 10 };
+    let direction = { x: 1, y: 0 };
+    let nextDirection = { x: 1, y: 0 };
+    let snakeScore = 0;
+    let snakeBest = loadBest("neonArenaSnakeBest");
+    let snakeTimer = null;
+    let snakePlaying = false;
+
+    snakeBestText.textContent = snakeBest;
+
+    function drawSnakeBoard() {
+      ctx.fillStyle = "#090914";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = "#17172c";
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i <= cells; i++) {
+        ctx.beginPath();
+        ctx.moveTo(i * cell, 0);
+        ctx.lineTo(i * cell, canvas.height);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(0, i * cell);
+        ctx.lineTo(canvas.width, i * cell);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = "#ff5ca8";
+      ctx.shadowColor = "#ff5ca8";
+      ctx.shadowBlur = 12;
+      ctx.fillRect(food.x * cell + 3, food.y * cell + 3,
+                   cell - 6, cell - 6);
+      ctx.shadowBlur = 0;
+
+      snake.forEach(function(part, index) {
+        ctx.fillStyle = index === 0 ? "#5fffee" : "#5b75c9";
+        ctx.shadowColor = index === 0 ? "#5fffee" : "#5b75c9";
+        ctx.shadowBlur = index === 0 ? 10 : 2;
+        ctx.fillRect(part.x * cell + 1, part.y * cell + 1,
+                     cell - 2, cell - 2);
+      });
+
+      ctx.shadowBlur = 0;
+    }
+
+    function placeFood() {
+      let attempts = 0;
+
+      do {
+        food = {
+          x: Math.floor(Math.random() * cells),
+          y: Math.floor(Math.random() * cells)
+        };
+
+        attempts++;
+      } while (
+        snake.some(function(part) {
+          return part.x === food.x && part.y === food.y;
+        }) && attempts < 1000
       );
     }
+
+    function endSnakeGame(message) {
+      snakePlaying = false;
+      clearInterval(snakeTimer);
+      snakeStart.textContent = "
+        "PLAY AGAIN";
+      snakeMessage.textContent = message;
+    }
+
+    function snakeStep() {
+      direction = nextDirection;
+
+      const head = {
+        x: snake[0].x + direction.x,
+        y: snake[0].y + direction.y
+      };
+
+      const ateFood = head.x === food.x && head.y === food.y;
+
+      const bodyToCheck = ateFood ? snake : snake.slice(0, -1);
+
+      const hitWall =
+        head.x < 0 || head.x >= cells ||
+        head.y < 0 || head.y >= cells;
+
+      const hitBody = bodyToCheck.some(function(part) {
+        return part.x === head.x && part.y === head.y;
+      });
+
+      if (hitWall || hitBody) {
+        endSnakeGame("Game over! Final score: " + snakeScore);
+        return;
+      }
+
+      snake.unshift(head);
+
+      if (ateFood) {
+        snakeScore++;
+        snakeScoreText.textContent = snakeScore;
+
+        if (snakeScore > snakeBest) {
+          snakeBest = snakeScore;
+          snakeBestText.textContent = snakeBest;
+          saveBest("neonArenaSnakeBest", snakeBest);
+        }
+
+        placeFood();
+      } else {
+        snake.pop();
+      }
+
+      drawSnakeBoard();
+    }
+
+    function startSnakeGame() {
+      clearInterval(snakeTimer);
+
+      snake = [
+        { x: 9, y: 10 },
+        { x: 8, y: 10 },
+        { x: 7, y: 10 }
+      ];
+
+      direction = { x: 1, y: 0 };
+      nextDirection = { x: 1, y: 0 };
+      snakeScore = 0;
+      snakeScoreText.textContent = "0";
+
+      placeFood();
+      drawSnakeBoard();
+
+      snakePlaying = true;
+      snakeStart.textContent = "RESTART GAME";
+      snakeMessage.textContent =
+        "Eat the pink food. Avoid walls and your tail!";
+
+      snakeTimer = setInterval(snakeStep, 150);
+    }
+
+    function changeDirection(name) {
+      if (!snakePlaying) return;
+
+      const directions = {
+        up:    { x: 0, y: -1 },
+        down:  { x: 0, y: 1 },
+        left:  { x: -1, y: 0 },
+        right: { x: 1, y: 0 }
+      };
+
+      const proposed = directions[name];
+
+      if (!proposed) return;
+
+      // Prevent an immediate 180-degree turn.
+      if (
+        proposed.x === -direction.x &&
+        proposed.y === -direction.y
+      ) {
+        return;
+      }
+
+      nextDirection = proposed;
+    }
+
+    document.querySelectorAll("[data-direction]").forEach(
+      function(button) {
+        button.addEventListener("click", function() {
+          changeDirection(button.dataset.direction);
+        });
+      }
+    );
+
+    document.addEventListener("keydown", function(event) {
+      const keyDirections = {
+        ArrowUp: "up",
+        ArrowDown: "down",
+        ArrowLeft: "left",
+        ArrowRight: "right",
+        w: "up",
+        s: "down",
+        a: "left",
+        d: "right"
+      };
+
+      const name = keyDirections[event.key];
+
+      if (name && snakePlaying) {
+        event.preventDefault();
+        changeDirection(name);
+      }
+    });
+
+    snakeStart.addEventListener("click", startSnakeGame);
+
+    // Draw a starting board before the player starts.
+    snake = [
+      { x: 9, y: 10 },
+      { x: 8, y: 10 },
+      { x: 7, y: 10 }
+    ];
+
+    placeFood();
+    drawSnakeBoard();
   </script>
 </body>
-  </html>
-  
+</html>
